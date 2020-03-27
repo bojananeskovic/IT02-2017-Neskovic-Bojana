@@ -2,6 +2,10 @@ package rva.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -10,6 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @NamedQuery(name="Smer.findAll", query="SELECT s FROM Smer s")
 public class Smer implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +29,7 @@ public class Smer implements Serializable {
 	private String oznaka;
 
 	//bi-directional many-to-one association to Grupa
+	@JsonIgnore
 	@OneToMany(mappedBy="smer")
 	private List<Grupa> grupas;
 
