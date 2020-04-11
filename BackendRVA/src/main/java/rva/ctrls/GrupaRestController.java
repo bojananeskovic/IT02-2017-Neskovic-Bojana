@@ -60,6 +60,7 @@ public class GrupaRestController {
 		if (id != -100)
 			grupaRepository.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+		
 	}
 	
 	@PostMapping("grupa")
