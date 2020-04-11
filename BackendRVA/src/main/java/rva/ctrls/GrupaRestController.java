@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class GrupaRestController {
 		return grupaRepository.findByOznakaContainingIgnoreCase(oznaka);
 	}
 	
+	@Transactional
 	@DeleteMapping("grupa/{id}")
 	@ApiOperation(value = "Briše grupu iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Grupa> deleteGrupa(@PathVariable ("id") Integer id){
