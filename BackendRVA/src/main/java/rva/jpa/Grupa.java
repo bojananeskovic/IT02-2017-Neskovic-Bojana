@@ -2,6 +2,10 @@ package rva.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -10,12 +14,13 @@ import java.util.List;
  * 
  */
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @NamedQuery(name="Grupa.findAll", query="SELECT g FROM Grupa g")
 public class Grupa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="GRUPA_ID_GENERATOR", sequenceName="GRUPA_SEQ")
+	@SequenceGenerator(name="GRUPA_ID_GENERATOR", sequenceName="GRUPA_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GRUPA_ID_GENERATOR")
 	private Integer id;
 
@@ -28,6 +33,7 @@ public class Grupa implements Serializable {
 
 	//bi-directional many-to-one association to Student
 	@OneToMany(mappedBy="grupa")
+	@JsonIgnore
 	private List<Student> students;
 
 	public Grupa() {
