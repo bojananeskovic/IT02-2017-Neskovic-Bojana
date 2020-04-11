@@ -53,16 +53,12 @@ public class GrupaRestController {
 	@DeleteMapping("grupa/{id}")
 	@ApiOperation(value = "Briše grupu iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Grupa> deleteGrupa(@PathVariable ("id") Integer id){
+
 		if(!grupaRepository.existsById(id))
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		jdbcTemplate.execute("delete from student where grupa = "+id);
-		grupaRepository.deleteById(id);
-		
-		if (id == -100) {
-			jdbcTemplate.execute(
-					" INSERT INTO \"grupa\"(\"id\", \"oznaka\", \"smer\") VALUES (-100, 'test', 1) ");
-		}
-			
+		jdbcTemplate.execute("delete from student where grupa = "+id);	
+		if (id != -100)
+			grupaRepository.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
