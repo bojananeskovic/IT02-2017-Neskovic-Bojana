@@ -3,7 +3,8 @@
 Ukoliko nije instaliran, potrebno je instalirati [Git](https://git-scm.com/download/win) na računaru.
 
 Koraci za kloniranje projekta sa GitHub-a:
-- U terminalu Visual Studio Code-a pozicionirati se na folder u koji će biti kloniran projekat
+-	Napraviti novi folder pod nazivom **FrontendRVA**
+- U terminalu Visual Studio Code-a pozicionirati se na folder **FrontendRVA** u koji će biti kloniran projekat
 - Naredbom **git clone https://github.com/RVA-2020/FrontendRVA1.git**  
 projekat je kloniran sa GitHub-a
 
