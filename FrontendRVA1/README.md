@@ -22,6 +22,6 @@ Ukoliko ne prepoznaje korisnika potrebno je pokrenuti (zameniti sa Vašim e-mail
 **git config --global user.email "email@example.com"   
 git config --global user.name "username"**
 - **git commit -m "Initial Commit"** - komituje u lokalni repozitorijum sa odgovarajućim komentarom
-- **git remote add origin https://github.com/rva2019/ITXX-XXXX-Prezime-Ime** - dodaje putanju do GitHub repozitorijuma (zameniti url sa url-om vašeg repozitorijuma)
+- **git remote add origin https://github.com/RVA-2020/ITXX-XXXX-Prezime-Ime** - dodaje putanju do GitHub repozitorijuma (zameniti url sa url-om vašeg repozitorijuma)
 - **git pull origin master --allow-unrelated-histories** - sinhronizuje repozitorijum (zbog backend-a koji se nalazi u istom repozitorijumu)
 - **git push -u origin master** - "šalje" u GitHub repozitorijum (uneti username i password za GitHub ukoliko zatraži)
