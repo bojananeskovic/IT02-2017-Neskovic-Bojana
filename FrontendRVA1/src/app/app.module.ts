@@ -13,26 +13,27 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { AboutComponent } from './components/core/about/about.component';
+import { HomeComponent } from './components/core/home/home.component';
 import { AuthorComponent } from './components/core/author/author.component';
-import { HelpComponent } from './components/core/help/help.component';
-import { ArtiklComponent } from './components/artikl/artikl.component';
-import { DobavljacComponent } from './components/dobavljac/dobavljac.component';
-import { PorudzbinaComponent } from './components/porudzbina/porudzbina.component';
-import { StavkaPorudzbineComponent } from './components/stavka-porudzbine/stavka-porudzbine.component';
+import { AboutComponent } from './components/core/about/about.component';
+import { ProjekatComponent } from './components/projekat/projekat.component';
+import { SmerComponent } from './components/smer/smer.component';
+import { GrupaComponent } from './components/grupa/grupa.component';
+import { StudentComponent } from './components/student/student.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     VoziloComponent,
     AutomobilComponent,
-    AboutComponent,
+    HomeComponent,
     AuthorComponent,
-    HelpComponent,
-    ArtiklComponent,
-    DobavljacComponent,
-    PorudzbinaComponent,
-    StavkaPorudzbineComponent
+    AboutComponent,
+    ProjekatComponent,
+    SmerComponent,
+    GrupaComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
