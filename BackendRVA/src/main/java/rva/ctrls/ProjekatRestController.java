@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,7 @@ public class ProjekatRestController {
 	}
 	
 	@DeleteMapping("projekat/{id}")
+	@CrossOrigin
 	@ApiOperation(value = "Briše projekat iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Projekat> deleteProjekat(@PathVariable("id") Integer id) {
 		if (!projekatRepository.existsById(id))
@@ -59,6 +61,7 @@ public class ProjekatRestController {
 	}
 	
 	@PostMapping("projekat")
+	@CrossOrigin
 	@ApiOperation(value = "Upisuje projekat u bazu podataka")
 	public ResponseEntity<Projekat> insertProjekat(@RequestBody Projekat projekat) {
 		if (!projekatRepository.existsById(projekat.getId())) {
@@ -69,6 +72,7 @@ public class ProjekatRestController {
 	}
 	
 	@PutMapping("projekat")
+	@CrossOrigin
 	@ApiOperation(value = "Modifikuje projekat u bazi podataka")
 	public ResponseEntity<Projekat> updateProjekat(@RequestBody Projekat projekat) {
 		if (!projekatRepository.existsById(projekat.getId()))
