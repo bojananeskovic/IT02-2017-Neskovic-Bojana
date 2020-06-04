@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +68,7 @@ public class StudentRestController {
 	}
 	
 	@DeleteMapping ("student/{id}")
+	@CrossOrigin
 	@ApiOperation(value = "Briše studenta iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Student> deleteStudent(@PathVariable("id") Integer id){
 		if(!studentRepository.existsById(id))
@@ -81,6 +83,7 @@ public class StudentRestController {
 	}
 	
 	@PostMapping("student")
+	@CrossOrigin
 	@ApiOperation(value = "Upisuje studenta u bazu podataka")
 	public ResponseEntity<Student> insertStudent(@RequestBody Student student){
 		if(studentRepository.existsById(student.getId()))
@@ -90,6 +93,7 @@ public class StudentRestController {
 	}
 	
 	@PutMapping("student")
+	@CrossOrigin
 	@ApiOperation(value = "Modifikuje studenta u bazi podataka")
 	public ResponseEntity<Student> updateStudent(@RequestBody Student student){
 		if(!studentRepository.existsById(student.getId()))

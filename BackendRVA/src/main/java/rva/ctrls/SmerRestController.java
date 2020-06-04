@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class SmerRestController {
 	}
 	
 	@DeleteMapping("smer/{id}")
+	@CrossOrigin
 	@ApiOperation(value = "Briše smer iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Smer> deleteSmer(@PathVariable("id") Integer id) {
 		if (!smerRepository.existsById(id))
@@ -60,6 +62,7 @@ public class SmerRestController {
 	}
 	
 	@PostMapping("smer")
+	@CrossOrigin
 	@ApiOperation(value = "Upisuje smer u bazu podataka")
 	public ResponseEntity<Smer> insertSmer(@RequestBody Smer smer) {
 		if (!smerRepository.existsById(smer.getId())) {
@@ -70,6 +73,7 @@ public class SmerRestController {
 	}
 	
 	@PutMapping("smer")
+	@CrossOrigin
 	@ApiOperation(value = "Modifikuje smer u bazi podataka")
 	public ResponseEntity<Smer> updateSmer(@RequestBody Smer smer) {
 		if (!smerRepository.existsById(smer.getId()))
