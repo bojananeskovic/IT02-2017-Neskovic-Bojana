@@ -23,6 +23,7 @@ import rva.repository.GrupaRepository;
 
 
 @RestController
+@CrossOrigin
 @Api(tags= {"Grupa CRUD operacije"})
 public class GrupaRestController {
 	
@@ -52,7 +53,6 @@ public class GrupaRestController {
 	
 	@Transactional
 	@DeleteMapping("grupa/{id}")
-	@CrossOrigin
 	@ApiOperation(value = "Briše grupu iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Grupa> deleteGrupa(@PathVariable ("id") Integer id){
 
@@ -66,7 +66,6 @@ public class GrupaRestController {
 	}
 	
 	@PostMapping("grupa")
-	@CrossOrigin
 	@ApiOperation(value = "Upisuje grupu u bazu podataka")
 	public ResponseEntity<Grupa> insertGrupa(@RequestBody Grupa grupa){
 		if(!grupaRepository.existsById(grupa.getId())){
@@ -77,7 +76,6 @@ public class GrupaRestController {
 	}
 	
 	@PutMapping("grupa")
-	@CrossOrigin
 	@ApiOperation(value = "Modifikuje grupu u bazi podataka")
 	public ResponseEntity<Grupa> updateGrupa(@RequestBody Grupa grupa){
 		if(!grupaRepository.existsById(grupa.getId()))

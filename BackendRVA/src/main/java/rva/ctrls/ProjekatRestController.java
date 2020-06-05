@@ -21,6 +21,7 @@ import rva.jpa.Projekat;
 import rva.repository.ProjekatRepository;
 
 @RestController
+@CrossOrigin
 @Api(tags= {"Projekat CRUD operacije"})
 public class ProjekatRestController {
 	
@@ -48,7 +49,6 @@ public class ProjekatRestController {
 	}
 	
 	@DeleteMapping("projekat/{id}")
-	@CrossOrigin
 	@ApiOperation(value = "Briše projekat iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Projekat> deleteProjekat(@PathVariable("id") Integer id) {
 		if (!projekatRepository.existsById(id))
@@ -61,7 +61,6 @@ public class ProjekatRestController {
 	}
 	
 	@PostMapping("projekat")
-	@CrossOrigin
 	@ApiOperation(value = "Upisuje projekat u bazu podataka")
 	public ResponseEntity<Projekat> insertProjekat(@RequestBody Projekat projekat) {
 		if (!projekatRepository.existsById(projekat.getId())) {
@@ -72,7 +71,6 @@ public class ProjekatRestController {
 	}
 	
 	@PutMapping("projekat")
-	@CrossOrigin
 	@ApiOperation(value = "Modifikuje projekat u bazi podataka")
 	public ResponseEntity<Projekat> updateProjekat(@RequestBody Projekat projekat) {
 		if (!projekatRepository.existsById(projekat.getId()))
