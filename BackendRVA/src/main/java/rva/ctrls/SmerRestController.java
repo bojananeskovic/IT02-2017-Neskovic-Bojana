@@ -21,6 +21,7 @@ import rva.jpa.Smer;
 import rva.repository.SmerRepository;
 
 @RestController
+@CrossOrigin
 @Api(tags= {"Smer CRUD operacije"})
 public class SmerRestController {
 	
@@ -49,7 +50,6 @@ public class SmerRestController {
 	}
 	
 	@DeleteMapping("smer/{id}")
-	@CrossOrigin
 	@ApiOperation(value = "Briše smer iz baze podataka čiji je ID prosleđen kao path varijabla")
 	public ResponseEntity<Smer> deleteSmer(@PathVariable("id") Integer id) {
 		if (!smerRepository.existsById(id))
@@ -62,7 +62,6 @@ public class SmerRestController {
 	}
 	
 	@PostMapping("smer")
-	@CrossOrigin
 	@ApiOperation(value = "Upisuje smer u bazu podataka")
 	public ResponseEntity<Smer> insertSmer(@RequestBody Smer smer) {
 		if (!smerRepository.existsById(smer.getId())) {
@@ -73,7 +72,6 @@ public class SmerRestController {
 	}
 	
 	@PutMapping("smer")
-	@CrossOrigin
 	@ApiOperation(value = "Modifikuje smer u bazi podataka")
 	public ResponseEntity<Smer> updateSmer(@RequestBody Smer smer) {
 		if (!smerRepository.existsById(smer.getId()))
