@@ -1,15 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges } from '@angular/core';
+import { Student } from 'src/app/models/student';
+import { MatTableDataSource } from '@angular/material/table';
+import { Grupa } from 'src/app/models/grupa';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { StudentService } from 'src/app/services/student.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  displayedColumns = ['id', 'ime', 'prezime', 'broj_indeksa', 'grupa', 'projekat', 'actions'];
+  dataSource: MatTableDataSource<Student>;
 
-  ngOnInit(): void {
+  @Input() selektovanaGrupa: Grupa;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(public studentService: StudentService,
+              public dialog: MatDialog) { }
+
+  ngOnInit() {
+
   }
 
+  ngOnChanges() {
+    if (this.selektovanaGrupa.id) {
+      debugger;
+      this.loadData();
+    }
+  }
+
+  public loadData() {
+    this.studentService.getStudent(this.selektovanaGrupa.id)
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        // pretraga po nazivu ugnježdenog objekta
+        this.dataSource.filterPredicate = (data, filter: string) => {
+          const accumulator = (currentTerm, key) => {
+            return key === 'projekat' ? currentTerm + data.projekat.naziv : currentTerm + data[key];
+          };
+          const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+          const transformedFilter = filter.trim().toLowerCase();
+          return dataStr.indexOf(transformedFilter) !== -1;
+        };
+
+        // sortiranje po nazivu ugnježdenog objekta
+        this.dataSource.sortingDataAccessor = (data, property) => {
+          switch (property) {
+            case 'projekat': return data.projekat.naziv.toLocaleLowerCase();
+            default: return data[property];
+          }
+        };
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLocaleLowerCase();
+    this.dataSource.filter = filterValue;
+  }
 }

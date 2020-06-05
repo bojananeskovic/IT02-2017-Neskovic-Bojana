@@ -24,7 +24,7 @@
 
 .mat-cell:nth-child(2),
 .mat-header-cell:nth-child(2){
-  flex: 0 0 20%;
+  flex: 0 0 40%;
 }
 
 .mat-cell:nth-child(3),
@@ -34,7 +34,7 @@
 
 .mat-cell:nth-child(4),
 .mat-header-cell:nth-child(4){
-  flex: 0 0 30%;
+  flex: 0 0 20%;
 }
 
 .mat-cell:nth-child(5),
