@@ -1,11 +1,13 @@
+import { Grupa } from './../../models/grupa';
 import { Component, OnInit, Input, ViewChild, OnChanges } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { MatTableDataSource } from '@angular/material/table';
-import { Grupa } from 'src/app/models/grupa';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { StudentService } from 'src/app/services/student.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Projekat } from 'src/app/models/projekat';
+import { StudentDialogComponent } from '../dialogs/student-dialog/student-dialog.component';
 
 @Component({
   selector: 'app-student',
@@ -14,7 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class StudentComponent implements OnInit, OnChanges {
 
-  displayedColumns = ['id', 'ime', 'prezime', 'broj_indeksa', 'grupa', 'projekat', 'actions'];
+  displayedColumns = ['id', 'ime', 'prezime', 'brojIndeksa', 'grupa', 'projekat', 'actions'];
   dataSource: MatTableDataSource<Student>;
 
   @Input() selektovanaGrupa: Grupa;
@@ -62,6 +64,26 @@ export class StudentComponent implements OnInit, OnChanges {
         this.dataSource.sort = this.sort;
       });
 
+  }
+
+  public openDialog(flag: number, id?: number, ime?: string, prezime?: string, brojIndeksa?: string,
+                    grupa?: Grupa, projekat?: Projekat) {
+    const dialogRef = this.dialog.open(StudentDialogComponent, {
+      data: {
+        i: id, id, ime, prezime, brojIndeksa,
+        grupa, projekat
+      }
+    });
+    dialogRef.componentInstance.flag = flag;
+    if (flag === 1) {
+      dialogRef.componentInstance.data.grupa = this.selektovanaGrupa;
+    }
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.loadData();
+      }
+    });
   }
 
   applyFilter(filterValue: string) {

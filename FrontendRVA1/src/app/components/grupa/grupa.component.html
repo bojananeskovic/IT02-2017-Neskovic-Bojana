@@ -32,7 +32,7 @@
     <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" (click)="openDialog(1)">
           <mat-icon>add</mat-icon>
         </button>
       </mat-header-cell>
@@ -40,13 +40,13 @@
       <mat-cell *matCellDef="let row; let i = index">
         <button
           mat-icon-button
-          color="primary">
+          color="primary" (click)="openDialog(2, row.id, row.oznaka, row.smer)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
         <button
           mat-icon-button
-          color="primary">
+          color="primary" (click)="openDialog(3, row.id, row.oznaka, row.smer)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

@@ -37,6 +37,10 @@ import { SmerComponent } from './components/smer/smer.component';
 import { GrupaComponent } from './components/grupa/grupa.component';
 import { StudentComponent } from './components/student/student.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProjekatDialogComponent } from './components/dialogs/projekat-dialog/projekat-dialog.component';
+import { SmerDialogComponent } from './components/dialogs/smer-dialog/smer-dialog.component';
+import { GrupaDialogComponent } from './components/dialogs/grupa-dialog/grupa-dialog.component';
+import { StudentDialogComponent } from './components/dialogs/student-dialog/student-dialog.component';
 
 
 @NgModule({
@@ -50,7 +54,11 @@ import { AppRoutingModule } from './app-routing.module';
     ProjekatComponent,
     SmerComponent,
     GrupaComponent,
-    StudentComponent
+    StudentComponent,
+    ProjekatDialogComponent,
+    SmerDialogComponent,
+    GrupaDialogComponent,
+    StudentDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@
       <mat-cell *matCellDef="let row"> {{ row.prezime }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="broj_indeksa">
+    <ng-container matColumnDef="brojIndeksa">
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >Broj indeksa</mat-header-cell
       >
@@ -54,7 +54,7 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" (click)="openDialog(1)">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
       </mat-header-cell>
@@ -62,13 +62,15 @@
       <mat-cell *matCellDef="let row; let i = index">
         <button
           mat-icon-button
-          color="primary">
+          color="primary" (click)="openDialog(2, row.id, row.ime,
+          row.prezime, row.brojIndeksa, row.grupa, row.projekat)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
         <button
           mat-icon-button
-          color="primary">
+          color="primary" (click)="openDialog(3, row.id, row.ime,
+          row.prezime, row.brojIndeksa, row.grupa, row.projekat)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ProjekatService } from 'src/app/services/projekat.service';
 import { MatDialog } from '@angular/material/dialog';
+import { ProjekatDialogComponent } from '../dialogs/projekat-dialog/projekat-dialog.component';
 
 @Component({
   selector: 'app-projekat',
@@ -33,6 +34,20 @@ public loadData() {
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+  }
+
+  public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string, opis?: string){
+    const dialogRef = this.dialog.open(ProjekatDialogComponent,
+                                        {data: {id, naziv, oznaka, opis}}
+    );
+
+    dialogRef.componentInstance.flag = flag;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.loadData();
+      }
     });
   }
 

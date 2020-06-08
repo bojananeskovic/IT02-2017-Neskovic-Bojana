@@ -1,3 +1,4 @@
+import { SmerDialogComponent } from './../dialogs/smer-dialog/smer-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Smer } from 'src/app/models/smer';
@@ -33,6 +34,19 @@ public loadData() {
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+  }
+
+  public openDialog(flag: number, id?: number, naziv?: string, oznaka?: string) {
+    const dialogRef = this.dialog.open(SmerDialogComponent,
+       { data: { id, naziv, oznaka } });
+
+    dialogRef.componentInstance.flag = flag;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.loadData();
+      }
     });
   }
 

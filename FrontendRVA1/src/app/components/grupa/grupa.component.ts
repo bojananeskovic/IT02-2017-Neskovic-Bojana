@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { GrupaService } from 'src/app/services/grupa.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Smer } from 'src/app/models/smer';
+import { GrupaDialogComponent } from '../dialogs/grupa-dialog/grupa-dialog.component';
 
 @Component({
   selector: 'app-grupa',
@@ -53,6 +55,19 @@ export class GrupaComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
+  }
+
+  public openDialog(flag: number, id?: number, oznaka?: string, smer?: Smer ) {
+    const dialogRef = this.dialog.open(GrupaDialogComponent,
+       { data: { id, oznaka, smer  } });
+    dialogRef.componentInstance.flag = flag;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1){
+         this.loadData();
+      }
+
+    });
   }
 
 
