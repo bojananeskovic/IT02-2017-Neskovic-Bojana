@@ -26,7 +26,6 @@ export class SmerService {
   }
 
   public addSmer(smer: Smer): void{
-    smer.id = 0;
     this.httpClient.post(this.API_URL, smer).subscribe();
     console.log('Dodat smer: ' + smer.naziv);
   }
