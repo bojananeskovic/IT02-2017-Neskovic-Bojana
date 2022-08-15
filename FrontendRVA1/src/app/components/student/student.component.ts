@@ -33,7 +33,7 @@ export class StudentComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.selektovanaGrupa.id) {
-      debugger;
+      console.log("Ucitavanje podataka");
       this.loadData();
     }
   }
@@ -54,9 +54,10 @@ export class StudentComponent implements OnInit, OnChanges {
 
         // sortiranje po nazivu ugnježdenog objekta
         this.dataSource.sortingDataAccessor = (data, property) => {
-          switch (property) {
-            case 'projekat': return data.projekat.naziv.toLocaleLowerCase();
-            default: return data[property];
+          if (property=='projekat') {
+            return data.projekat.naziv.toLocaleLowerCase();
+          } else {
+            return data[property];
           }
         };
 

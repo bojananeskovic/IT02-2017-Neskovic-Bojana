@@ -45,9 +45,10 @@ export class GrupaComponent implements OnInit {
 
       // sortiranje po nazivu ugnježdenog objekta
       this.dataSource.sortingDataAccessor = (data, property) => {
-        switch (property) {
-          case 'smer': return data.smer.naziv.toLocaleLowerCase();
-          default: return data[property];
+        if (property=='smer') {
+          return data.smer.naziv.toLocaleLowerCase();
+        } else {
+          return data[property];
         }
       };
 
